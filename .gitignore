@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Local MLflow artifacts / downloaded run outputs
+mlruns/
+mlartifacts/
+serialized_space*.json
+details*.json
+
+# Databricks local config and secrets
+.databricks/
+.databrickscfg
+.env
+*.env
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
