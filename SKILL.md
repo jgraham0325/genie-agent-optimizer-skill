@@ -40,7 +40,20 @@ The helper needs Python with write access to the Genie API and MLflow. Some plac
 
 ## Step 0: load the helper
 
-Read `genie_optimizer.py` with `readAssetById` (assetType `file`) and run its full content in one `executeCode` Python call (`default` session, serverless). All later steps run in that same session so `w`, functions and variables persist. If Auto Mode blocks running code from `.assistant/`, tell the user and ask them to confirm, then retry.
+Import `genie_optimizer.py` as a normal module in one `executeCode` Python call (`default` session, serverless). Do not `exec()` the file content and do not paste it inline.
+
+```python
+import sys, importlib
+from databricks.sdk import WorkspaceClient
+_p = f"/Workspace/Users/{WorkspaceClient().current_user.me().user_name}/.assistant/skills/genie-agent-optimizer"
+if _p not in sys.path:
+    sys.path.insert(0, _p)
+import genie_optimizer
+importlib.reload(genie_optimizer)   # picks up edits to the file; harmless on first load
+from genie_optimizer import *
+```
+
+The star import exposes every public helper plus `w`, `json`, `copy` and `mlflow`, so the snippets below work unchanged. Private names (`_tone_num`, `_host`, ...) are not imported; use `genie_optimizer._name` if you need one. All later steps run in that same session so variables persist. If the file is edited mid-session, re-run this block (reload, then the star import again).
 
 ## Step 1: sync the working copy and run the baseline
 

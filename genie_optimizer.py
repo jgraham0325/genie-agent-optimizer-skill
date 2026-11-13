@@ -1,7 +1,12 @@
 """Helpers for the genie-agent-optimizer skill.
 
-Load in a Python session with:
-    exec(open("/Workspace/Users/<<user email>>/.assistant/skills/genie-agent-optimizer/genie_optimizer.py").read())
+Load in a Python session as a normal module (do not exec the file):
+    import sys, importlib
+    from databricks.sdk import WorkspaceClient
+    sys.path.insert(0, f"/Workspace/Users/{WorkspaceClient().current_user.me().user_name}"
+                       "/.assistant/skills/genie-agent-optimizer")
+    import genie_optimizer; importlib.reload(genie_optimizer)
+    from genie_optimizer import *
 
 All experiments run on the developer's working copy (get_or_create_working_copy); the original is only
 changed by promote_to_original, after explicit user confirmation.
