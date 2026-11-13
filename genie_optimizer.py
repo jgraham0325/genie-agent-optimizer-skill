@@ -1,7 +1,7 @@
 """Helpers for the genie-agent-optimizer skill.
 
 Load in a Python session with:
-    exec(open("/Workspace/Users/james.graham@databricks.com/.assistant/skills/genie-agent-optimizer/genie_optimizer.py").read())
+    exec(open("/Workspace/Users/<<user email>>/.assistant/skills/genie-agent-optimizer/genie_optimizer.py").read())
 
 All experiments run on the developer's working copy (get_or_create_working_copy); the original is only
 changed by promote_to_original, after explicit user confirmation.
